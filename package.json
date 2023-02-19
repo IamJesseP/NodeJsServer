@@ -1,0 +1,19 @@
+{
+  "name": "nodejsserver",
+  "version": "1.0.0",
+  "description": "A simple nodejs server setup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IamJesseP/NodeJsServer.git"
+  },
+  "author": "Jesse Perez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IamJesseP/NodeJsServer/issues"
+  },
+  "homepage": "https://github.com/IamJesseP/NodeJsServer#readme"
+}
