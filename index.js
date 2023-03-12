@@ -1,14 +1,34 @@
-// import your http module
-const http = require("http")
+import http from "http"
+import fetch from "node-fetch"
 
-//create server with http
-const server = http.createServer((req, res)=> {
-    console.log("server is created")
-})
+const server = http.createServer((req, res) => {
+    const url = req.url
+    let tableData = "<table border='1'><tr><th>ID</th><th>Name</th><th>Username</th><th>Email</th><th>Address</th><th>Phone Number</th></tr>"
+    if (url === '/'){
+        res.write("Home Page")
+        res.end()
+    }
+    if (url === '/message'){
+        res.write("Welcome to my message page")
+        res.end()
+    }
+    if (url === '/list'){
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(data => {
+                createData(data);
+                res.write(tableData)
+                res.end()
+            })
+    }
 
-//initial port
-const PORT = 4000;
+    function createData(data){
+        data.forEach(element => {
+            tableData+=`<tr><td>${element.id}</td><td>${element.name}</td><td>${element.username}</td><td>${element.email}</td><td>${element.address.street}</td><td>${element.phone}</td></tr>`
+        })
+        tableData += '</table>'
+    }
 
 
-//listen to the server
-server.listen(PORT, ()=> console.log(`Server is running on port ${PORT}`))
+
+}).listen(8090, console.log("Server listening on port 8090"))
